@@ -5,8 +5,11 @@ const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
-// Connect to MongoDB
+/* Connect to MongoDB to localhost
 mongoose.connect('mongodb://root:example@localhost:27017/')
+Connect to MongoDB in Docker
+mongoose.connect('mongodb://mongo:27017/your_database_name')*/
+mongoose.connect('mongodb://mongo:27017/your_database_name')
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
