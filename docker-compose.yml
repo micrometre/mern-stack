@@ -1,29 +1,26 @@
 services:
-  anpr_api:
-    container_name: alpr_api
-    restart: always
-    build: .
-    ports:
-      - "9091:9091"
-    volumes:
-      - ./:/code
-    external_links:
-      - mongo
-  mongo:
-    container_name: mongo
-    image: mongo:4.4.8-focal
 
-    volumes:
-      - dbdata:/data/db
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
     ports:
-      - '27017:27017'
+      - "27017:27017" 
   mongo-express:
-    container_name: mongo_db
     image: mongo-express
-    depends_on:
-       - mongo
+    restart: always
     ports:
-       - "8081:8081"        
-volumes:
-  dbdata:
-  openalpr:    
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+  app:
+    build: . 
+    depends_on:
+      - mongo
+    ports:
+      - "3000:3000" 
