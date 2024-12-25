@@ -1,32 +1,25 @@
-## Overview 
-### WebUI for OpenALPR 
+# MERN Stack (MongoDB, Express, React, and Node,) Docker Compose  example
 
-Using a video file containing Licence plates for input.
-OpenALPR daemon(alprd)  will POST to the Nodejs application. 
-The Licence plate number are stored in a MongoDB data base.
-
-![alt tag](public/images/db-admin.png ) 
-#### Feature
-- Upload video files
-- Manage alprd 
-- Perform MongoDB CRUD Operations
-
-#### Contents
-
-##### Backends
-- Node.js
-- Express.js
-- MongoDB
-- Mongo-Express
-##### Frontends
-- jsGrid
-- Material Design Lite 
-### Requirements
-- Docker and Docker Compose.
-### Usage
-``` bash
-#Start the container
-docker-compose up -d               
+## Run the System
+We can easily run the whole with only a single command:
+```bash
+docker compose up
 ```
-#### Access using
-http://localhost:9091/
+
+Docker will pull the MongoDB and Node.js images (if our machine does not have it before).
+
+The services can be run on the background with command:
+```bash
+docker compose up -d
+```
+
+## Stop the System
+Stopping all the running containers is also simple with a single command:
+```bash
+docker compose down
+```
+
+If you need to stop and remove all containers, networks, and all images used by any service in <em>docker-compose.yml</em> file, use the command:
+```bash
+docker compose down --rmi all
+```
